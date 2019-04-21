@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+    <link href="webjars/bootstrap/4.2.1/css/bootstrap.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<a class="nav-link" th:href="@{/items}">Items</a>
+<form class="card bg-light" style="width: 200px" action="#" th:action="@{/items/add}" th:object="${itemDTO}"
+      method="post">
+    <span th:class="alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</span>
+    <label>
+        <input type="text" th:name="name">
+    </label>
+    <button>Submit</button>
+</form>
+</body>
+</html>

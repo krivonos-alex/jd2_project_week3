@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Items</title>
+    <link href="webjars/bootstrap/4.2.1/css/bootstrap.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div>
+    <a class="nav-link" th:href="@{/items/add}">Add</a>
+    <span th:class="alert" th:text="${message}"></span>
+    <div th:class="flex-lg-row" th:each="itemDTO : ${items}">
+        <form class="card bg-light" style="width: 200px" action="#" th:action="@{/items/update}" th:object="${itemDTO}"
+              method="post">
+            <label>
+                <input hidden value="#" th:value="*{id}" th:name="id">
+            </label>
+            <span th:text="*{name}"></span>
+            <br><label>
+            <select class="dropdown" th:field="*{status}">
+            <option th:each="status : ${statuses}" th:if="${status} == *{status}" selected th:text="${status}"
+                    th:value="${status}"></option>
+            <option th:each="status : ${statuses}" th:unless="${status} == *{status}" th:text="${status}"
+                    th:value="${status}"></option>
+        </select>
+        </label>
+            <br>
+            <button>Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
